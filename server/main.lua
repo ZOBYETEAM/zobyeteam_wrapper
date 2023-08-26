@@ -26,7 +26,7 @@ else
 end
 
 function ImportESX()
-    if Config.UseESXImport then
+    if Config.UseESXImportVersion then
         ESX = exports[Config.ESXResourceName]:getSharedObject()
     else
         TriggerEvent(Config.ESXEvents['getSharedObject'], function(obj) ESX = obj end)
