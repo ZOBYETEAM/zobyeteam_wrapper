@@ -3,6 +3,25 @@ QBCore = nil
 
 CurrentFramework = nil
 
+function ImportESX()
+    if Config.UseESXImportVersion then
+        ESX = exports[Config.ESXResourceName]:getSharedObject()
+    else
+        while ESX == nil do
+            TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+            Wait(0)
+        end
+    end
+
+    CurrentFramework = 'esx'
+end
+
+function ImportQBCore()
+    QBCore = exports[Config.QBCoreResourceName]:GetCoreObject()
+
+    CurrentFramework = 'qbcore'
+end
+
 if Config.AutoFrameworkDetected then 
 
     if GetResourceState(Config.ESXResourceName) == 'started' then 
@@ -22,7 +41,6 @@ else
     else
         -- break    
     end
-
 end
 
 function GetPlayerAccount(type)
@@ -42,6 +60,7 @@ function GetPlayerAccount(type)
         return QBCore.PlayerData.money[type]
     end
 end
+exports('GetPlayerAccount', GetPlayerAccount)
 
 function GetItemLabel(itemName)
     if CurrentFramework == 'esx' then
@@ -68,22 +87,3 @@ function GetPlayerJob()
     end
 end
 exports('GetPlayerJob', GetPlayerJob)
-
-function ImportESX()
-    if Config.UseESXImportVersion then
-        ESX = exports[Config.ESXResourceName]:getSharedObject()
-    else
-        while ESX == nil do
-            TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-            Wait(0)
-        end
-    end
-
-    CurrentFramework = 'esx'
-end
-
-function ImportQBCore()
-    QBCore = exports[Config.QBCoreResourceName]:GetCoreObject()
-
-    CurrentFramework = 'qbcore'
-end

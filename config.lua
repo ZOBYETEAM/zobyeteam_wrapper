@@ -3,7 +3,7 @@ Config = {}
 Config.ESXResourceName = 'es_extended'
 Config.QBCoreResourceName = 'qb-core'
 
-Config.UseESXImportVersion = false
+Config.UseESXImportVersion = true
 Config.ESXEvents = {
     ['getSharedObject'] = 'esx:getSharedObject',
 }

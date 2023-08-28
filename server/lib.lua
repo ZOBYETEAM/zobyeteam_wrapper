@@ -9,8 +9,8 @@ function GetPlayer(playerId)
 
     local Lib = {}
 
-    local xPlayer = ESX.GetPlayerFromId(playerId)
-    local Player = QBCore.Functions.GetPlayer(playerId)
+    local xPlayer = ESX and ESX.GetPlayerFromId(playerId)
+    local Player = QBCore and QBCore.Functions.GetPlayer(playerId)
 
     Lib.AddItem = function(itemName, amount)
         if CurrentFramework == 'esx' then 
