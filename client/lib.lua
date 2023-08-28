@@ -57,7 +57,7 @@ function GetPlayerAccount(type)
     elseif CurrentFramework == 'qbcore' then
         type = type == 'money' and 'cash' or type
 
-        return QBCore.PlayerData.money[type]
+        return QBCore.Functions.GetPlayerData().money[type] or 0
     end
 end
 exports('GetPlayerAccount', GetPlayerAccount)

@@ -9,4 +9,4 @@ Config.ESXEvents = {
 }
 
 Config.AutoFrameworkDetected = false
-Config.FrameworkUsing = 'esx' -- esx or qbcore
+Config.FrameworkUsing = 'qbcore' -- esx or qbcore
