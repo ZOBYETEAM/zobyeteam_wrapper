@@ -87,3 +87,12 @@ function GetPlayerJob()
     end
 end
 exports('GetPlayerJob', GetPlayerJob)
+
+function GetPlayerName()
+    if CurrentFramework == 'esx' then
+        return ESX.GetPlayerData().name
+    elseif CurrentFramework == 'qbcore' then
+        return QBCore.Functions.GetPlayerData().name
+    end
+end
+exports('GetPlayerName', GetPlayerName)
