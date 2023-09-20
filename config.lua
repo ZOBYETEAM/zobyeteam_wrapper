@@ -8,5 +8,5 @@ Config.ESXEvents = {
     ['getSharedObject'] = 'esx:getSharedObject',
 }
 
-Config.AutoFrameworkDetected = false
-Config.FrameworkUsing = 'qbcore' -- esx or qbcore
+Config.AutoFrameworkDetected = true
+Config.FrameworkUsing = 'esx' -- esx or qbcore
