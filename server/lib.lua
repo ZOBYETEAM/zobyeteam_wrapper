@@ -86,11 +86,26 @@ function GetPlayer(playerId)
         end
     end
 
-    
+    Lib.GetIdentifier = function()
+        if CurrentFramework == 'esx' then 
+            return xPlayer.getIdentifier()
+        elseif CurrentFramework == 'qbcore' then
+            return Player.license
+        end
+    end
 
     return Lib
 end
 exports('GetPlayer', GetPlayer)
+
+function GetPlayers()
+    if CurrentFramework == 'esx' then
+        return ESX.GetPlayers()
+    elseif CurrentFramework == 'qbcore' then
+        return QBCore.Functions.GetPlayers()
+    end
+end
+exports('GetPlayers', GetPlayers)
 
 function RegisterUsableItem(itemName, cb)
     if CurrentFramework == 'esx' then
