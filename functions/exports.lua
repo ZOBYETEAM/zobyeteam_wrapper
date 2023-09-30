@@ -1,3 +1,3 @@
 ZBT = {}
 
-exports("Get", function() return ZBT end)
+exports("GetLib", function() return ZBT end)
