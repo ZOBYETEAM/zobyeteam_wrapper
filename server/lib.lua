@@ -12,9 +12,6 @@ function GetPlayer(playerId)
     local xPlayer = ESX and ESX.GetPlayerFromId(playerId)
     local Player = QBCore and QBCore.Functions.GetPlayer(playerId)
     
-    if not xPlayer then return end
-    if not Player then return end
-    
     Lib.AddItem = function(itemName, amount)
         if CurrentFramework == 'esx' then 
             xPlayer.addInventoryItem(itemName, amount)

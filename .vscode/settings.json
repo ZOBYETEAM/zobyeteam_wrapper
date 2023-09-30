@@ -6,6 +6,6 @@
     ],
     "Lua.diagnostics.disable": [
         "undefined-field",
-        // "missing-parameter"
+        "need-check-nil"
     ]
 }
