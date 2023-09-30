@@ -18,6 +18,7 @@ end)
 ZBT.Callback.Register('zobyeteam_inventory:getName', function(playerId, message)
     return { playerId = playerId, name = 'Takzobye', message = message }
 end)
+exports('CallbackRegister', ZBT.Callback.Register)
 
 --[[
 

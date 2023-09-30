@@ -33,10 +33,12 @@ end
 ZBT.Callback = setmetatable({}, {
 	__call = triggerServerCallback
 })
+exports('Callback', ZBT.Callback.Register)
 
 function ZBT.Callback.Await(name, ...)
     return triggerServerCallback(nil, name, false, ...)
 end
+exports('CallbackAwait', ZBT.Callback.Register)
 
 RegisterNetEvent('zobyeteam_lib:result', function(requestId, ...)
     if not waitingResults[requestId] then return end
