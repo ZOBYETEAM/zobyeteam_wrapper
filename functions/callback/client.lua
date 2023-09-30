@@ -1,26 +1,41 @@
 local waitingResults = {}
 
-local lib = {
-    callback = {}
-}
-
-function lib.callback.await(name, ...)
+local function getUniqeRequestId(name)
     local requestId
 
     repeat
 		requestId = ('%s:%s'):format(name, math.random(0, 100000)) -- math.random(0, 100000)
 	until not waitingResults[requestId]
 
-    local promise = promise.new()
-    
-    waitingResults[requestId] = function(...)
-        waitingResults[requestId] = nil
-        promise:resolve({ ... })
-    end 
+    return requestId
+end
+
+local function triggerServerCallback(_, name, cb, ...)
+    local requestId = getUniqeRequestId(name)
 
     TriggerServerEvent('zobyeteam_lib:request', name, requestId, ...)
 
-    return table.unpack(Citizen.Await(promise))
+    local promise = not cb and promise.new()
+
+    waitingResults[requestId] = function(...)
+        local response = { ... }
+        waitingResults[requestId] = nil
+        
+        if promise then promise:resolve({ ... }) end
+        if cb then cb(table.unpack(response)) end
+    end 
+
+    if promise then 
+        return table.unpack(Citizen.Await(promise))
+    end
+end
+
+ZBT.Callback = setmetatable({}, {
+	__call = triggerServerCallback
+})
+
+function ZBT.Callback.Await(name, ...)
+    return triggerServerCallback(nil, name, false, ...)
 end
 
 RegisterNetEvent('zobyeteam_lib:result', function(requestId, ...)
@@ -29,7 +44,14 @@ RegisterNetEvent('zobyeteam_lib:result', function(requestId, ...)
     waitingResults[requestId](...)
 end)
 
-RegisterCommand('libtest', function()
-    local data = lib.callback.await('zobyeteam_inventory:getName', 'Hello')
-    print(json.encode(data, { indent = true }))
-end, false)
+--[[
+
+    Callback
+    ZBT.Callback(name, function(parms...)
+        
+    end, args)
+
+    Await
+    local response = ZBT.Callback.Await(name, args...)
+
+]]
