@@ -11,7 +11,10 @@ function GetPlayer(playerId)
 
     local xPlayer = ESX and ESX.GetPlayerFromId(playerId)
     local Player = QBCore and QBCore.Functions.GetPlayer(playerId)
-
+    
+    if not xPlayer then return end
+    if not Player then return end
+    
     Lib.AddItem = function(itemName, amount)
         if CurrentFramework == 'esx' then 
             xPlayer.addInventoryItem(itemName, amount)
@@ -31,7 +34,7 @@ function GetPlayer(playerId)
     Lib.AddMoney = function(type, amount)
         if CurrentFramework == 'esx' then
             if Config.UseESXImportVersion then 
-                xPlayer.addAccountMoney(type, money)
+                xPlayer.addAccountMoney(type, amount)
             else
                 if type == 'cash' or type == 'money' then 
                     xPlayer.addMoney(amount)
