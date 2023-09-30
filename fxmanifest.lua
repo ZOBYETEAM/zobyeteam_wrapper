@@ -9,10 +9,14 @@ shared_scripts {
 }
 
 client_scripts {
-    'client/lib.lua'
+    'client/lib.lua',
+
+    'functions/**/client.lua'
 }
 
 server_scripts {
     'server/main.lua',
-    'server/lib.lua'
+    'server/lib.lua',
+
+    'functions/**/server.lua'
 }
