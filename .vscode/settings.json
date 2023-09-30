@@ -1,0 +1,11 @@
+{
+    "Lua.diagnostics.globals": [
+        "MySQL",
+        "ESX",
+        "QBCore",
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-field",
+        // "missing-parameter"
+    ]
+}
